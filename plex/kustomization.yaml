@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- pvc-config.yaml
+- pvc-data.yaml
+- ingress.yaml
+- pvc-transcode.yaml
+- service.yaml
+namePrefix: plex-
+namespace: plex
+commonLabels:
+  app: plex
+images:
+- name: plex-image
+  newName: plexinc/pms-docker
+  newTag: 1.40.4.8679-424562606

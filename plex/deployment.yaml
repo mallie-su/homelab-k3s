@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pms
+  namespace: plex
+spec:
+  selector:
+    matchLabels:
+      name: pms
+  template:
+    metadata:
+      labels:
+        name: pms
+    spec:
+      containers:
+        - name: pms
+          image: plex-image
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /config
+              name: config
+            - mountPath: /transcode
+              name: transcode
+          ports:
+            - name: web
+              containerPort: 32400
+            - name: port1
+              containerPort: 3005
+            - name: port2
+              containerPort: 8324
+            - name: port3
+              containerPort: 32469
+            - name: port4
+              containerPort: 1900
+            - name: port5
+              containerPort: 32410
+            - name: port6
+              containerPort: 32412
+            - name: port7
+              containerPort: 32413
+            - name: port8
+              containerPort: 32414
+          env:
+            - name: TZ
+              value: "Europe/Paris"
+            - name: ADVERTISE_IP
+              value: "http://home.sp4rck.ovh:32400"
+          resources:
+            requests:
+              cpu: "2000m"
+              memory: "4Gi"
+            limits:
+              cpu: "2000m"
+              memory: "4Gi"
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: "plex-config"
+        - name: data
+          persistentVolumeClaim:
+            claimName: "plex-media"
+        - name: transcode
+          persistentVolumeClaim:
+            claimName: "plex-transcode"
