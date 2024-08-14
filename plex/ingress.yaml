@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: plex.kube.home
+  - host: plex.sp4rck.ovh
     http:
       paths:
       - pathType: Prefix
