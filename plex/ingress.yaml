@@ -7,16 +7,10 @@ metadata:
     name: pms
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: cert-issuer
-    cert-manager.io/renew-before: 360h
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - plex.sp4rck.ovh
-      secretName: plex-sp4rck-ovh
   rules:
-  - host: plex.sp4rck.ovh
+  - host: plex.kube.home
     http:
       paths:
       - pathType: Prefix
