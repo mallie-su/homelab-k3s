@@ -46,7 +46,7 @@ spec:
             - name: TZ
               value: "Europe/Paris"
             - name: ADVERTISE_IP
-              value: "http://home.sp4rck.ovh:32400"
+              value: "https://plex.kube.home:443,http://home.sp4rck.ovh:32400"
           resources:
             requests:
               cpu: "2000m"
