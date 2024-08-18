@@ -7,6 +7,7 @@ helmCharts:
     valuesFile: values.yaml
     version: 0.4.0
 resources:
+  - csi-pv.yaml
   - pvc-data.yaml
 namespace: plex
 patches:
