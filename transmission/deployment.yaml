@@ -1,0 +1,63 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transmission
+spec:
+  selector:
+    matchLabels:
+      app: transmission
+  template:
+    metadata:
+      labels:
+        app: transmission
+    spec:
+      containers:
+        - name: transmission
+          image: tranmission-image
+          volumeMounts:
+            - mountPath: /downloads
+              name: data
+              readOnly: false
+            - mountPath: /config
+              name: config-volume
+            - mountPath: /watch
+              name: watch-volume
+          securityContext:
+            fsGroup: 1000
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 9091
+              protocol: TCP
+            - containerPort: 51413
+              protocol: TCP
+            - containerPort: 51413
+              protocol: UDP
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Paris"
+            - name: USER
+              value: "sp4rck"
+            - name: PASS
+              valueFrom:
+                secretKeyRef:
+                  name: transmission-secrets
+                  key: transmission-password
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: "transmission-media"
+        - name: config-volume
+          emptyDir: {}
+        - name: watch-volume
+          emptyDir: {}
