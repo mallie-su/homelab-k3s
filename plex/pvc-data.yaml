@@ -9,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 264Gi
-  volumeName: pv-smb-media
+  volumeName: pv-smb-media-plex
   storageClassName: smb
