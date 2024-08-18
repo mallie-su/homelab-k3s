@@ -20,6 +20,15 @@ patches:
     target:
       kind: Ingress
       name: plex-plex-media-server-ingress
+  - patch: |-
+      apiVersion: apps/v1
+      kind: StatefulSet
+      metadata:
+        name: plex-plex-media-server
+      spec:
+        template:
+          spec:
+            hostNetwork: true
 labels:
   - includeSelectors: true
     pairs:
