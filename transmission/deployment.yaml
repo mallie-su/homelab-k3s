@@ -13,7 +13,7 @@ spec:
         app: transmission
     spec:
       securityContext:
-        fsGroup: 1000
+        fsGroup: 110000
       containers:
         - name: transmission
           image: tranmission-image
@@ -40,9 +40,9 @@ spec:
               protocol: UDP
           env:
             - name: PUID
-              value: "1000"
+              value: "100000"
             - name: PGID
-              value: "1000"
+              value: "110000"
             - name: TZ
               value: "Europe/Paris"
             - name: USER
