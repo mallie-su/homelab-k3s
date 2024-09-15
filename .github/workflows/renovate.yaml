@@ -13,12 +13,11 @@ jobs:
       - name: Renovate Bot GitHub Action
         uses: renovatebot/github-action@v40.2.6
         env:
-          RENOVATE_REPOSITORIES: ${{ github.repository }}
-          RENOVATE_ONBOARDING: "false"
+          RENOVATE_REPOSITORIES: "${{ github.repository }}"
+          RENOVATE_ONBOARDING: "true"
           RENOVATE_USERNAME: "Renovate[bot]"
-          RENOVATE_GIT_AUTHOR: "renovate@sp4rck.ovh"
-          RENOVATE_PLATFORM_COMMIT: "true"
-          LOG_LEVEL: 'info'
+          RENOVATE_GIT_AUTHOR: "Renovate <allie.matthieu@gmail.com>"
+          LOG_LEVEL: 'debug'
         with:
           configurationFile: .github/renovate.js
           token: ${{ secrets.RENOVATE_TOKEN }}
