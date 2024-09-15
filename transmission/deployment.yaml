@@ -12,19 +12,18 @@ spec:
       labels:
         app: transmission
     spec:
+      securityContext:
+        fsGroup: 1000
       containers:
         - name: transmission
           image: tranmission-image
           volumeMounts:
             - mountPath: /downloads
               name: data
-              readOnly: false
             - mountPath: /config
               name: config-volume
             - mountPath: /watch
               name: watch-volume
-          securityContext:
-            fsGroup: 1000
           resources:
             limits:
               memory: "256Mi"
@@ -58,6 +57,7 @@ spec:
           nfs:
             server: 192.168.1.31 # IP to our NFS server
             path: /mnt/media # The exported directory
+            readOnly: false
         - name: config-volume
           emptyDir: {}
         - name: watch-volume
