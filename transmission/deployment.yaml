@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transmission
+spec:
+  selector:
+    matchLabels:
+      app: transmission
+  template:
+    metadata:
+      labels:
+        app: transmission
+    spec:
+      securityContext:
+        fsGroup: 110000
+      containers:
+        - name: transmission
+          image: tranmission-image
+          volumeMounts:
+            - mountPath: /downloads
+              name: data
+            - mountPath: /config
+              name: config-volume
+            - mountPath: /watch
+              name: watch-volume
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 9091
+              protocol: TCP
+            - containerPort: 51413
+              protocol: TCP
+            - containerPort: 51413
+              protocol: UDP
+          env:
+            - name: DOCKER_MODS
+              value: linuxserver/mods:transmission-env-var-settings
+            - name: TRANSMISSION_DOWNLOAD_DIR
+              value: /downloads/downloads
+            - name: TRANSMISSION_INCOMPLETE_DIR_ENABLED
+              value: "false"
+            - name: TRANSMISSION_SPEED_LIMIT_DOWN
+              value: "10240"
+            - name: TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED
+              value: "true"
+            - name: TRANSMISSION_SPEED_LIMIT_UP
+              value: "10240"
+            - name: TRANSMISSION_SPEED_LIMIT_UP_ENABLED
+              value: "true"
+            - name: PUID
+              value: "100000"
+            - name: PGID
+              value: "110000"
+            - name: TZ
+              value: "Europe/Paris"
+            - name: USER
+              value: "sp4rck"
+            - name: PASS
+              valueFrom:
+                secretKeyRef:
+                  name: transmission-secrets
+                  key: transmission-password
+      volumes:
+        - name: data
+          nfs:
+            server: 192.168.1.31 # IP to our NFS server
+            path: /mnt/media # The exported directory
+            readOnly: false
+        - name: config-volume
+          emptyDir: {}
+        - name: watch-volume
+          emptyDir: {}
