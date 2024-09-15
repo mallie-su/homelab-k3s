@@ -55,8 +55,9 @@ spec:
                   key: transmission-password
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: "transmission-media"
+          nfs:
+            server: 192.168.1.31 # IP to our NFS server
+            path: /mnt/media # The exported directory
         - name: config-volume
           emptyDir: {}
         - name: watch-volume
