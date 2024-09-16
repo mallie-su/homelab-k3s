@@ -7,4 +7,4 @@ resources:
 images:
   - name: tranmission-image
     newName: ghcr.io/linuxserver/transmission
-    newTag: latest
+    newTag: 4.0.6@sha256:60f620b6597d1a3c06f3faf0ae1af7385b0f8f793b4d425cd4867423dd0800c7

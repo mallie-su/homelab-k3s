@@ -2,9 +2,8 @@
 image:
   registry: index.docker.io
   repository: plexinc/pms-docker
-  # If unset use "latest"
-  tag: "latest"
-  sha: ""
+  tag: "1.41.0"
+  sha: "sha256:0c4e1981b23c3bdf2892cb9b85c299137af55390044dd5cfdd33bdbc4e32ee1f"
   pullPolicy: Always
 
 global:
