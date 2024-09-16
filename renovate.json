@@ -1,3 +1,10 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "branchNameStrict": true,
+  "pinDigests": true,
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0
 }
