@@ -44,4 +44,5 @@ spec:
             path: /mnt/media # The exported directory
             readOnly: true
         - name: config-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: prowlarr-config

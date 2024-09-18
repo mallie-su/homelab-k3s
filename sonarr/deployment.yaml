@@ -46,4 +46,6 @@ spec:
             path: /mnt/media # The exported directory
             readOnly: false
         - name: config-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: sonarr-config
+          
