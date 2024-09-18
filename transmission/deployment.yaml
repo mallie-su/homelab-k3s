@@ -18,7 +18,7 @@ spec:
         - name: transmission
           image: tranmission-image
           volumeMounts:
-            - mountPath: /downloads
+            - mountPath: /data
               name: data
             - mountPath: /config
               name: config-volume
@@ -42,7 +42,7 @@ spec:
             - name: DOCKER_MODS
               value: linuxserver/mods:transmission-env-var-settings
             - name: TRANSMISSION_DOWNLOAD_DIR
-              value: /downloads/downloads
+              value: /data/downloads
             - name: TRANSMISSION_INCOMPLETE_DIR_ENABLED
               value: "false"
             - name: TRANSMISSION_SPEED_LIMIT_DOWN
