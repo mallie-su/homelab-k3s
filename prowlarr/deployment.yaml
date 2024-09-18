@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+spec:
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      securityContext:
+        fsGroup: 110000
+      containers:
+        - name: prowlarr
+          image: prowlarr-image
+          volumeMounts:
+            - mountPath: /config
+              name: config-volume
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 9696
+              protocol: TCP
+          env:
+            - name: PUID
+              value: "100000"
+            - name: PGID
+              value: "110000"
+            - name: TZ
+              value: "Europe/Paris"
+      volumes:
+        - name: data
+          nfs:
+            server: 192.168.1.31 # IP to our NFS server
+            path: /mnt/media # The exported directory
+            readOnly: true
+        - name: config-volume
+          emptyDir: {}
