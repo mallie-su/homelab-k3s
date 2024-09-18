@@ -73,6 +73,7 @@ spec:
             path: /mnt/media # The exported directory
             readOnly: false
         - name: config-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: transmission-config
         - name: watch-volume
           emptyDir: {}
