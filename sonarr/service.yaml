@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: sonarr-service
+    namespace: sonarr
+spec:
+    type: NodePort
+    selector:
+        app: sonarr
+    ports:
+    - protocol: TCP
+      name: web-interface
+      port: 8989
