@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: prowlarr-service
+    namespace: prowlarr
+spec:
+    type: NodePort
+    selector:
+        app: prowlarr
+    ports:
+    - protocol: TCP
+      name: web-interface
+      port: 9696
