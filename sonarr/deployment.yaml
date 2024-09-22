@@ -40,13 +40,15 @@ spec:
             - name: TZ
               value: "Europe/Paris"
           livenessProbe:
+            failureThreshold: 3
             httpGet:
-              host: localhost
               path: /ping
               port: 9696
+              scheme: HTTP
             initialDelaySeconds: 30
-            failureThreshold: 3
             periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 2
       volumes:
         - name: data
           nfs:
