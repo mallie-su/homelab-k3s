@@ -30,7 +30,7 @@ spec:
               memory: "256Mi"
               cpu: "500m"
           ports:
-            - containerPort: 9696
+            - containerPort: 8989
               protocol: TCP
           env:
             - name: PUID
@@ -43,7 +43,7 @@ spec:
             failureThreshold: 3
             httpGet:
               path: /ping
-              port: 9696
+              port: 8989
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 5
