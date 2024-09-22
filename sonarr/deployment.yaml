@@ -41,8 +41,12 @@ spec:
               value: "Europe/Paris"
           livenessProbe:
             httpGet:
+              host: localhost
               path: /ping
               port: 9696
+            initialDelaySeconds: 30
+            failureThreshold: 3
+            periodSeconds: 5
       volumes:
         - name: data
           nfs:
