@@ -39,6 +39,10 @@ spec:
               value: "110000"
             - name: TZ
               value: "Europe/Paris"
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: 9696
       volumes:
         - name: data
           nfs:
