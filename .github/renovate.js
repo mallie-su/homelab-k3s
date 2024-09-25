@@ -1,7 +1,7 @@
 module.exports = {
     branchPrefix: 'chore/',
-    username: 'renovate',
-    gitAuthor: 'Renovate Bot <renovate@sp4rck.ovh>',
+    username: 'mallie-su',
+    gitAuthor: "Renovate <allie.matthieu@gmail.com>",
     onboarding: true,
     platform: 'github',
     forkProcessing: 'false',
