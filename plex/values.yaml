@@ -1,6 +1,6 @@
 # The docker image information for the pms application
 image:
-  registry: index.docker.io
+  registry: registry-1.docker.io
   repository: plexinc/pms-docker
   tag: "1.41.0.8994-f2c27da23"
   sha: ""
